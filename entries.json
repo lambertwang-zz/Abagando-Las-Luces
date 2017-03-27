@@ -1,0 +1,402 @@
+{
+  "nextEntryId": 85,
+  "nodes": [
+    {
+      "id": "0",
+      "name": "Scene",
+      "type": "scene"
+    },
+    {
+      "id": "74",
+      "name": "title",
+      "type": null,
+      "children": [
+        {
+          "id": "73",
+          "name": "TitleScreen",
+          "type": "sprite"
+        },
+        {
+          "id": "72",
+          "name": "title_screen",
+          "type": "scene"
+        },
+        {
+          "id": "75",
+          "name": "title_start",
+          "type": "script"
+        },
+        {
+          "id": "81",
+          "name": "title_fade",
+          "type": "script"
+        },
+        {
+          "id": "80",
+          "name": "title_music",
+          "type": "sound"
+        }
+      ]
+    },
+    {
+      "id": "48",
+      "name": "Font",
+      "type": "font"
+    },
+    {
+      "id": "10",
+      "name": "levels",
+      "type": null,
+      "children": [
+        {
+          "id": "11",
+          "name": "level_1",
+          "type": null,
+          "children": [
+            {
+              "id": "9",
+              "name": "map_level_1",
+              "type": "tileMap"
+            },
+            {
+              "id": "13",
+              "name": "scene_level_1",
+              "type": "scene"
+            },
+            {
+              "id": "4",
+              "name": "Tile Set",
+              "type": "tileSet"
+            }
+          ]
+        },
+        {
+          "id": "12",
+          "name": "shared",
+          "type": null,
+          "children": [
+            {
+              "id": "76",
+              "name": "bg_music",
+              "type": "sound"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Sprite",
+      "type": "sprite"
+    },
+    {
+      "id": "14",
+      "name": "characters",
+      "type": null,
+      "children": [
+        {
+          "id": "1",
+          "name": "player",
+          "type": null,
+          "children": [
+            {
+              "id": "3",
+              "name": "script_player",
+              "type": "script"
+            },
+            {
+              "id": "79",
+              "name": "jump",
+              "type": "sound"
+            },
+            {
+              "id": "26",
+              "name": "sprite_player_walk",
+              "type": "sprite"
+            },
+            {
+              "id": "56",
+              "name": "sprite_player_death",
+              "type": "sprite"
+            },
+            {
+              "id": "77",
+              "name": "death",
+              "type": "sound"
+            },
+            {
+              "id": "78",
+              "name": "skull_pickup",
+              "type": "sound"
+            },
+            {
+              "id": "82",
+              "name": "throw",
+              "type": "sound"
+            }
+          ]
+        },
+        {
+          "id": "22",
+          "name": "skull",
+          "type": null,
+          "children": [
+            {
+              "id": "24",
+              "name": "script_skull",
+              "type": "script"
+            },
+            {
+              "id": "23",
+              "name": "sprite_skull",
+              "type": "sprite"
+            }
+          ]
+        },
+        {
+          "id": "27",
+          "name": "Checkpoint",
+          "type": null,
+          "children": [
+            {
+              "id": "31",
+              "name": "script_checkpoint",
+              "type": "script"
+            },
+            {
+              "id": "30",
+              "name": "sprite_checkpoint",
+              "type": "sprite"
+            }
+          ]
+        },
+        {
+          "id": "39",
+          "name": "Hazards",
+          "type": null,
+          "children": [
+            {
+              "id": "40",
+              "name": "script_hazard",
+              "type": "script"
+            },
+            {
+              "id": "44",
+              "name": "button",
+              "type": null,
+              "children": [
+                {
+                  "id": "45",
+                  "name": "script_button",
+                  "type": "script"
+                },
+                {
+                  "id": "42",
+                  "name": "sprite_button",
+                  "type": "sprite"
+                },
+                {
+                  "id": "83",
+                  "name": "click",
+                  "type": "sound"
+                }
+              ]
+            },
+            {
+              "id": "37",
+              "name": "spike",
+              "type": null,
+              "children": [
+                {
+                  "id": "38",
+                  "name": "script_spike",
+                  "type": "script"
+                },
+                {
+                  "id": "41",
+                  "name": "sprite_spike",
+                  "type": "sprite"
+                }
+              ]
+            },
+            {
+              "id": "43",
+              "name": "kill_box",
+              "type": null,
+              "children": [
+                {
+                  "id": "46",
+                  "name": "kill_box",
+                  "type": "script"
+                },
+                {
+                  "id": "47",
+                  "name": "sprite_spike_vert",
+                  "type": "sprite"
+                }
+              ]
+            },
+            {
+              "id": "33",
+              "name": "spider",
+              "type": null,
+              "children": [
+                {
+                  "id": "35",
+                  "name": "script_spider",
+                  "type": "script"
+                },
+                {
+                  "id": "65",
+                  "name": "sprite_spider",
+                  "type": "sprite"
+                }
+              ]
+            },
+            {
+              "id": "57",
+              "name": "walker",
+              "type": null,
+              "children": [
+                {
+                  "id": "58",
+                  "name": "script_walker",
+                  "type": "script"
+                },
+                {
+                  "id": "64",
+                  "name": "sprite_walker",
+                  "type": "sprite"
+                }
+              ]
+            },
+            {
+              "id": "61",
+              "name": "floater",
+              "type": null,
+              "children": [
+                {
+                  "id": "62",
+                  "name": "script_floater",
+                  "type": "script"
+                },
+                {
+                  "id": "63",
+                  "name": "floater_shader",
+                  "type": "shader"
+                },
+                {
+                  "id": "36",
+                  "name": "sprite_floater",
+                  "type": "sprite"
+                }
+              ]
+            },
+            {
+              "id": "59",
+              "name": "trigger",
+              "type": null,
+              "children": [
+                {
+                  "id": "60",
+                  "name": "script_trigger",
+                  "type": "script"
+                }
+              ]
+            },
+            {
+              "id": "84",
+              "name": "monster_death",
+              "type": "sound"
+            }
+          ]
+        },
+        {
+          "id": "53",
+          "name": "end",
+          "type": null,
+          "children": [
+            {
+              "id": "54",
+              "name": "Script",
+              "type": "script"
+            },
+            {
+              "id": "55",
+              "name": "sprite_end",
+              "type": "sprite"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "50",
+      "name": "particles",
+      "type": null,
+      "children": [
+        {
+          "id": "69",
+          "name": "script_emitter",
+          "type": "script"
+        },
+        {
+          "id": "71",
+          "name": "script_particle",
+          "type": "script"
+        },
+        {
+          "id": "51",
+          "name": "blood",
+          "type": null,
+          "children": [
+            {
+              "id": "52",
+              "name": "sprite_blood",
+              "type": "sprite"
+            }
+          ]
+        },
+        {
+          "id": "68",
+          "name": "splatter",
+          "type": null,
+          "children": [
+            {
+              "id": "67",
+              "name": "sprite_splatter",
+              "type": "sprite"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "name": "camera",
+      "type": null,
+      "children": [
+        {
+          "id": "18",
+          "name": "camera",
+          "type": "script"
+        },
+        {
+          "id": "19",
+          "name": "light_radius",
+          "type": "sprite"
+        },
+        {
+          "id": "20",
+          "name": "light",
+          "type": "script"
+        },
+        {
+          "id": "21",
+          "name": "shader_light",
+          "type": "shader"
+        }
+      ]
+    }
+  ]
+}

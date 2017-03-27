@@ -1,0 +1,15 @@
+uniform sampler2D map;
+uniform float fade;
+uniform float time;
+
+varying vec2 vUv;
+
+void main() {
+  gl_FragColor = vec4(texture2D(map, vUv).x,
+                      texture2D(map, vUv).y,
+                      texture2D(map, vUv).z,
+                      min(texture2D(map, vUv).w, max(fade - sin(time * 3.0) / 2.0, 
+                          texture2D(map, vUv).x - 
+                          max(texture2D(map, vUv).y,
+                              texture2D(map, vUv).z))));
+}

@@ -1,0 +1,65 @@
+uniform float centerX;
+uniform float centerY;
+uniform vec3 light_color;
+
+uniform vec3 glow_color;
+uniform float glow_alpha;
+
+uniform float light_radius;
+uniform float check_radius;
+uniform vec2 light_pos;
+uniform vec2 check_pos;
+
+varying vec2 vUv;
+
+const float PIXEL_ROUND = 125.0;
+const float GRADIENT_RADIUS = 12.0;
+
+void main() {
+  vec2 round_vUv = vec2(floor(vUv.x * PIXEL_ROUND) / PIXEL_ROUND, 
+                        floor(vUv.y * PIXEL_ROUND) / PIXEL_ROUND);
+
+  float light_dist = distance(light_pos, round_vUv);
+  float light_alpha = 0.0;
+  float light_glow = 0.0;
+  if (light_dist > light_radius) {
+    light_alpha = 1.0;
+  } else {
+    float min_radius = light_radius - (1.0 / GRADIENT_RADIUS);
+    if (light_dist > min_radius) {
+      float gradient = (1.0 - GRADIENT_RADIUS * (light_radius - light_dist));
+      light_alpha = gradient;
+    } else {
+      light_glow = 1.0 - (light_dist / min_radius);
+    }
+  }
+  
+  float check_dist = distance(check_pos, round_vUv);
+  float check_alpha = 0.0;
+  float check_glow = 0.0;
+  if (check_dist > check_radius) {
+    check_alpha = 1.0;
+  } else {
+    float min_radius = check_radius - (1.0 / GRADIENT_RADIUS);
+    if (check_dist > min_radius) {
+      float gradient = (1.0 - GRADIENT_RADIUS * (check_radius - check_dist));
+      check_alpha = gradient;
+    } else {
+      check_glow = 1.0 - (check_dist / min_radius);
+    }
+  }
+  
+  float new_alpha = sqrt(min(check_alpha, light_alpha));
+  float new_glow_alpha = sqrt(max(check_glow, light_glow)) * glow_alpha;
+  
+  if (new_alpha == 1.0) {
+    gl_FragColor = vec4(light_color, 1.0); 
+  } else {
+    if (new_alpha > 0.0) {
+      gl_FragColor = vec4(light_color, new_alpha);
+    } else {
+      gl_FragColor = vec4(glow_color * new_glow_alpha, new_glow_alpha);
+    }
+  }
+  
+}

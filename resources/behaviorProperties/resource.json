@@ -1,0 +1,325 @@
+{
+  "behaviors": {
+    "PlayerBehavior": {
+      "scriptId": "3",
+      "line": 0,
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "speed",
+          "type": "number"
+        },
+        {
+          "name": "jumpSpeed",
+          "type": "number"
+        },
+        {
+          "name": "throwSpeed",
+          "type": "number"
+        },
+        {
+          "name": "max_speed",
+          "type": "number"
+        },
+        {
+          "name": "friction",
+          "type": "number"
+        },
+        {
+          "name": "skull_height_offset",
+          "type": "number"
+        },
+        {
+          "name": "holding_skull",
+          "type": "boolean"
+        },
+        {
+          "name": "skullDelay",
+          "type": "number"
+        },
+        {
+          "name": "facing_right",
+          "type": "boolean"
+        },
+        {
+          "name": "is_dead",
+          "type": "boolean"
+        },
+        {
+          "name": "game_won",
+          "type": "boolean"
+        },
+        {
+          "name": "bg_music",
+          "type": "any"
+        }
+      ]
+    },
+    "CameraBehavior": {
+      "scriptId": "18",
+      "line": 0,
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "shake_decay",
+          "type": "number"
+        },
+        {
+          "name": "buttons_mashed",
+          "type": "number"
+        },
+        {
+          "name": "navy_seal",
+          "type": "string"
+        }
+      ]
+    },
+    "LightBehavior": {
+      "scriptId": "20",
+      "line": 0,
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "max_radius",
+          "type": "number"
+        },
+        {
+          "name": "min_radius",
+          "type": "number"
+        },
+        {
+          "name": "radius_vel",
+          "type": "number"
+        },
+        {
+          "name": "check_radius",
+          "type": "number"
+        },
+        {
+          "name": "light_radius",
+          "type": "number"
+        },
+        {
+          "name": "view_height",
+          "type": "number"
+        },
+        {
+          "name": "y_scale",
+          "type": "number"
+        }
+      ]
+    },
+    "SkullBehavior": {
+      "scriptId": "24",
+      "line": 0,
+      "parentBehavior": null,
+      "properties": []
+    },
+    "Script_checkpointBehavior": {
+      "scriptId": "31",
+      "line": 0,
+      "parentBehavior": null,
+      "properties": []
+    },
+    "SpikeBehavior": {
+      "scriptId": "38",
+      "line": 0,
+      "parentBehavior": "HazardBehavior",
+      "properties": [
+        {
+          "name": "delay",
+          "type": "number"
+        },
+        {
+          "name": "timer",
+          "type": "number"
+        }
+      ]
+    },
+    "HazardBehavior": {
+      "scriptId": "40",
+      "line": 0,
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "isDeadly",
+          "type": "boolean"
+        },
+        {
+          "name": "lastTouched",
+          "type": "boolean"
+        }
+      ]
+    },
+    "ButtonBehavior": {
+      "scriptId": "45",
+      "line": 0,
+      "parentBehavior": "HazardBehavior",
+      "properties": [
+        {
+          "name": "releaseDelay",
+          "type": "number"
+        },
+        {
+          "name": "releaseTimer",
+          "type": "number"
+        }
+      ]
+    },
+    "KillBoxBehavior": {
+      "scriptId": "46",
+      "line": 0,
+      "parentBehavior": "HazardBehavior",
+      "properties": []
+    },
+    "SpiderBehavior": {
+      "scriptId": "35",
+      "line": 0,
+      "parentBehavior": "HazardBehavior",
+      "properties": [
+        {
+          "name": "is_clockwise",
+          "type": "boolean"
+        },
+        {
+          "name": "speed",
+          "type": "number"
+        },
+        {
+          "name": "wall_stuck",
+          "type": "number"
+        },
+        {
+          "name": "free",
+          "type": "boolean"
+        }
+      ]
+    },
+    "ScriptBehavior": {
+      "scriptId": "54",
+      "line": 0,
+      "parentBehavior": null,
+      "properties": []
+    },
+    "WalkerBehavior": {
+      "scriptId": "58",
+      "line": 0,
+      "parentBehavior": "HazardBehavior",
+      "properties": [
+        {
+          "name": "speed",
+          "type": "number"
+        },
+        {
+          "name": "direction",
+          "type": "number"
+        }
+      ]
+    },
+    "TriggerBehavior": {
+      "scriptId": "60",
+      "line": 0,
+      "parentBehavior": "HazardBehavior",
+      "properties": []
+    },
+    "FloaterBehavior": {
+      "scriptId": "62",
+      "line": 0,
+      "parentBehavior": "HazardBehavior",
+      "properties": [
+        {
+          "name": "speed",
+          "type": "number"
+        },
+        {
+          "name": "radius",
+          "type": "number"
+        },
+        {
+          "name": "fade",
+          "type": "number"
+        },
+        {
+          "name": "start_position",
+          "type": "any"
+        }
+      ]
+    },
+    "EmitterBehavior": {
+      "scriptId": "69",
+      "line": 0,
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "particleSprite",
+          "type": "string"
+        },
+        {
+          "name": "lifetime",
+          "type": "number"
+        },
+        {
+          "name": "particleLife",
+          "type": "number"
+        },
+        {
+          "name": "emitterFrequency",
+          "type": "number"
+        },
+        {
+          "name": "velocity",
+          "type": "number"
+        }
+      ]
+    },
+    "ParticleBehavior": {
+      "scriptId": "71",
+      "line": 0,
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "gravity",
+          "type": "number"
+        },
+        {
+          "name": "lifetime",
+          "type": "number"
+        }
+      ]
+    },
+    "TitleBehavior": {
+      "scriptId": "75",
+      "line": 0,
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "textOpacity",
+          "type": "number"
+        },
+        {
+          "name": "fade_vel",
+          "type": "number"
+        },
+        {
+          "name": "title_music",
+          "type": "any"
+        }
+      ]
+    },
+    "FadeBehavior": {
+      "scriptId": "81",
+      "line": 0,
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "textOpacity",
+          "type": "number"
+        },
+        {
+          "name": "fade_vel",
+          "type": "number"
+        }
+      ]
+    }
+  }
+}
