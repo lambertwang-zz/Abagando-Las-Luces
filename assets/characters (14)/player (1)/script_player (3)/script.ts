@@ -1,9 +1,9 @@
 class PlayerBehavior extends Sup.Behavior {
-  speed = 0.03;
+  speed = 0.025;
   jumpSpeed = 0.4;
   throwSpeed = 0.3;
   max_speed = 0.25;
-  friction = 0.80;
+  friction = 0.891; // 6 = log base n of .5
   skull_height_offset = .6;
   
   holding_skull: boolean = false;
@@ -14,6 +14,9 @@ class PlayerBehavior extends Sup.Behavior {
   last_checkpoint: Sup.Actor = null;
   the_end: Sup.Actor;
   game_won = false;
+  
+  // Tutorial Flag
+  skull_help = false;
   
   emitter: Sup.Actor = null;
   
@@ -58,28 +61,86 @@ class PlayerBehavior extends Sup.Behavior {
     let ground = this.actor.arcadeBody2D.getTouches().bottom;
     
     // Calculate all inputs first
+    let touches = {
+      any: false,
+      up: false,
+      down: false,
+      left: false,
+      right: false,
+      movement: 0
+    };
+    
+    /*
+    for (let i = 0; i < 5; i++) {
+      try {
+        if (Sup.Input.isTouchDown(i)) {
+          let touch: Sup.Math.XY = Sup.Input.getTouchPosition(i);
+          let touch_angle = Math.atan2(touch.y, touch.x);
+          if (!touches.right && Math.abs(touch_angle) < Math.PI / 4.0) {
+            touches.right = true;
+            touches.movement += touch.x;
+          } else if (!touches.left && Math.abs(touch_angle) > Math.PI * 3.0 / 4.0) {
+            touches.left = true;
+            touches.movement += touch.x;
+          } else if (touch_angle > 0) {
+            touches.up = true;
+          } else {
+            touches.down = true;
+          }
+        }
+      } catch (e) {
+        break;
+      }
+    }
+    */
+
+    for (let i = 0; i < 5; i++) {
+      try {
+        if (Sup.Input.isTouchDown(i)) {
+          touches.any = true;
+          let touch: Sup.Math.XY = Sup.Input.getTouchPosition(i);
+          if (touch.x > .5) {
+            touches.right = true;
+            touches.movement += touch.x;
+          } else if (touch.x < -0.5) {
+            touches.left = true;
+            touches.movement += touch.x;
+          } else if (touch.y > 0) {
+            touches.up = true;
+          } else {
+            touches.down = true;
+          }
+        }
+      } catch (e) {
+        break;
+      }
+    }
+
     let jumped = Sup.Input.wasKeyJustPressed("SPACE") || 
                  Sup.Input.wasKeyJustPressed("W") || 
                  Sup.Input.wasKeyJustPressed("UP") ||
                  Sup.Input.wasKeyJustPressed("Z") ||
-                 Sup.Input.wasGamepadButtonJustPressed(0, 0),
-        thrown = Sup.Input.wasMouseButtonJustPressed(0) ||
-                 Sup.Input.wasKeyJustPressed("E") ||
+                 Sup.Input.wasGamepadButtonJustPressed(0, 0) ||
+                 touches.up,
+        thrown = Sup.Input.wasKeyJustPressed("E") ||
                  Sup.Input.wasKeyJustPressed("X") ||
                  Sup.Input.wasGamepadButtonJustPressed(0, 1) ||
-                 Sup.Input.wasGamepadButtonJustPressed(0, 7),
+                 Sup.Input.wasGamepadButtonJustPressed(0, 7) ||
+                 touches.down,
         restart = Sup.Input.wasKeyJustPressed("R") || 
                   Sup.Input.wasGamepadButtonJustPressed(0, 9),
         movement = Math.max(-1.0, Math.min(1.0, 
-                   ((Sup.Input.isKeyDown("A") || Sup.Input.isKeyDown("LEFT")) ? -1 : 0) +
-                   ((Sup.Input.isKeyDown("D") || Sup.Input.isKeyDown("RIGHT")) ? 1 : 0) + 
-                   Sup.Input.getGamepadAxisValue(0, 0)));
+                     ((Sup.Input.isKeyDown("A") || Sup.Input.isKeyDown("LEFT")) ? -1 : 0) +
+                     ((Sup.Input.isKeyDown("D") || Sup.Input.isKeyDown("RIGHT")) ? 1 : 0) + 
+                     Sup.Input.getGamepadAxisValue(0, 0) + 
+                     touches.movement
+                   ));
 
     if (this.game_won) {
       return;
     }
     if (this.is_dead) {
-      if (restart) {
+      if (restart || touches.any) {
         this.respawn();
       }
       if (ground)
@@ -91,16 +152,21 @@ class PlayerBehavior extends Sup.Behavior {
 
     let moving = true;
     if (movement < -0.01) {
+      velocity.x = Math.min(0, velocity.x);
       velocity.x = Math.max(velocity.x + movement * this.speed, movement * this.max_speed);
       this.actor.spriteRenderer.setHorizontalFlip(true);
       this.facing_right = false;
     } else if (movement > 0.01) {
+      velocity.x = Math.max(0, velocity.x);
       velocity.x = Math.min(velocity.x + movement * this.speed, movement * this.max_speed);
       this.actor.spriteRenderer.setHorizontalFlip(false);
       this.facing_right = true;
     } else {
       moving = false;
       velocity.x *= this.friction;
+      if (Math.abs(velocity.x) < this.max_speed / 2) {
+        velocity.x = 0;
+      }
     }
 
     if (ground) {
@@ -130,6 +196,10 @@ class PlayerBehavior extends Sup.Behavior {
         if (this.skullDelay == -1) {
           Sup.Audio.playSound("characters/player/skull_pickup");
           this.holding_skull = true;
+          if (!this.skull_help) {
+            this.skull_help = true;
+            this.actor.textRenderer.setText("X TO THROW\n");
+          }
         }
       }
     } else {
@@ -146,7 +216,8 @@ class PlayerBehavior extends Sup.Behavior {
         this.skull.arcadeBody2D.warpPosition(this.actor.getX(), this.actor.getY());
         this.skull.arcadeBody2D.setVelocity(skull_vel);
         this.holding_skull = false;
-        
+        this.actor.textRenderer.setText("");
+
         Sup.clearTimeout(this.skullDelay);
         this.skullDelay = Sup.setTimeout(400, this.resetSkull.bind(this));
       } else {

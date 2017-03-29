@@ -1,6 +1,6 @@
 class LightBehavior extends Sup.Behavior {
   max_radius = 0.3;
-  min_radius = 0.15;
+  min_radius = 0.14;
   radius_vel = 0.003;
   check_radius = 0.125;
   

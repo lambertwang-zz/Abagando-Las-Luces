@@ -14,25 +14,28 @@ class TitleBehavior extends Sup.Behavior {
   update() {
     
     for (let character of Sup.Input.getTextEntered()) {
-      let ord = character.charCodeAt(0);
-      if ((ord >= 'a'.charCodeAt(0) && ord <= 'z'.charCodeAt(0)) || 
-          (ord >= 'A'.charCodeAt(0) && ord <= 'Z'.charCodeAt(0)) ||
-          (ord >= '0'.charCodeAt(0) && ord <= '9'.charCodeAt(0))){
-        this.start_game();
-        return;
-      }
+      return this.start_game();
     }
     try {
       for (let i = 0; i < 24; i++) {
         if(Sup.Input.wasGamepadButtonJustPressed(0, i)) {
-          this.start_game();
-          return;
+          return this.start_game();
         }
       }
     } catch (e) {
       // Do nothing
     }
     
+    for (let i = 0; i < 5; i++) {
+      try {
+        if (Sup.Input.isTouchDown(i)) {
+          this.start_game();
+        }
+      } catch (e) {
+        break;
+      }
+    }
+
     this.textOpacity += this.fade_vel;
     
     if (this.textOpacity > 1.0) {
@@ -51,6 +54,7 @@ class TitleBehavior extends Sup.Behavior {
   start_game() {
     this.title_music.stop();
     Sup.loadScene("Scene");
+    return true;
   }
 }
 Sup.registerBehavior(TitleBehavior);

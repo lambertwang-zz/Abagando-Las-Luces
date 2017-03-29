@@ -50,6 +50,10 @@
           "type": "boolean"
         },
         {
+          "name": "skull_help",
+          "type": "boolean"
+        },
+        {
           "name": "bg_music",
           "type": "any"
         }
@@ -67,10 +71,6 @@
         {
           "name": "buttons_mashed",
           "type": "number"
-        },
-        {
-          "name": "navy_seal",
-          "type": "string"
         }
       ]
     },
